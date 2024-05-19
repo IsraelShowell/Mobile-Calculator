@@ -13,8 +13,8 @@ I developed this application using Kivy documentation and an awesome tutorial fr
 Check out his Youtube at this link!
 https://www.youtube.com/@Tech2etc
 
-The icons I used in this application came from these links!
-Main Icon:
+The icons I used in this application came from these links! <br>
+Main Icon: <br>
 Image by <a href="https://pixabay.com/users/blendertimer-9538909/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7832583">Daniel Roberts</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7832583">Pixabay</a>
 
 Splash Icon:
