@@ -2,7 +2,7 @@
 # Start Date: 5/19/2024
 # End Date: 5/19/2024
 # Project: Moblie Calculator
-# Version: 1.00
+# Version: 1.10
 
 # Description:
 This is a basic calculator application that I made to practice app development and using the Kivy library!
@@ -24,16 +24,25 @@ Image by <a href="https://pixabay.com/users/caffeinesystem-1979991/?utm_source=l
 # V-1.00: (5-19-24)
 Initial Version <br>
 Uploaded to Github <br>
-Uploaded APK File <br>
+Uploaded V-1.00 APK File <br>
+
+# V-1.10: (5-20-24)
+Leading zeros are now deleted <br>
+Parentheses and factorial can now be used <br>
+Divizion by zero is no longer possible <br>
+Add in more input validation functionalilty <br>
+Uploaded V-1.10 APK File <br>
 
 
-# Current Features as of V-1.00:
+# Current Features as of V-1.10:
 - Allows a user to enter in numbers to do addition, subtraction, mulitplication, and division
 - The program has basic input validation functionalilty 
 
 
 # Future Features to Implement:
 - Implement a cleaner UI
-- Add in more artheimtic features
+- Add in more artheimtic features - Going Well
 - Deploy app to a App Store
 
+# Known Errors:
+- Trailing zeros after an operator cause errors
