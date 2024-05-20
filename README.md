@@ -44,5 +44,5 @@ Uploaded V-1.10 APK File <br>
 - Add in more artheimtic features - Going Well
 - Deploy app to a App Store
 
-#Known Errors:
+# Known Errors:
 - Trailing zeros after an operator cause errors
