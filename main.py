@@ -2,7 +2,7 @@
 # Start Date: 5/19/2024
 # End Date: 5/19/2024
 # Project: Moblie Calculator
-# Version: 1.00
+# Version: 1.10
 
 # Description:
 """
@@ -27,6 +27,7 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
+import math
 
 
 class MainApp(App):
@@ -38,7 +39,7 @@ class MainApp(App):
         self.icon = "calculatormain.png"
 
         #Stores the operators
-        self.operators = ["/","*","+","-"]
+        self.operators = ["/","*","+","-","(",")","^","!"]
 
         #Remembers the last button and operator used
         self.last_was_operator = None
@@ -62,6 +63,7 @@ class MainApp(App):
             ["6", "5", "4", "*"],
             ["3", "2", "1", "+"],
             [".", "0", "C", "-"],
+            ["(",")","^","!"],
             ]
 
 
@@ -109,14 +111,31 @@ class MainApp(App):
         #Checks if the clear button has been pressed
         if button_text == 'C':
             self.solution.text = ""
+        #Adds the format for exponents
+        elif button_text == '^':
+            self.solution.text = self.solution.text + "**"
+            
+        #Calculates the factorial of a number
+        elif button_text == '!':
+            self.solution.text = str(math.factorial(eval(self.solution.text)))
+            
         else:
             #This checks to see if there are 2 operators at one time.
             # E.G: 1 + +. We want to make sure that doesn't happen
             if current and (self.last_was_operator and button_text in self.operators):
-                return
-            #Stops user from entering in a operator as the first value
+                #Makes sure that you can still put an operator after )
+                if button_text == ")":
+                    new_text = current + button_text
+                    self.solution.text = new_text
+                else:
+                    return
+            #Stops user from entering in a operator as the first value, unless its a (
             elif current == "" and button_text in self.operators:
-                return
+                if button_text == "(":
+                    new_text = current + button_text
+                    self.solution.text = new_text
+                else:
+                    return
             #If the above conditions are false, then the program will add
             #the button text to the screen
             else:
@@ -124,23 +143,50 @@ class MainApp(App):
                 new_text = current + button_text
                 self.solution.text = new_text
 
-        #This "clears" the variables 
+        #This clears the variables 
         self.last_button = button_text
-        self.last_was_operator = self.last_button in self.operators
+        self.last_was_operator = ""
 
     #Start of the solution function
     def on_solution(self, instance):
 
         #Sets text equal to what ever is in the solution field
         text = self.solution.text
-
+        i = 0
+        
         #Checks if there is text in the field
         if text:
-            #Eval takes the entire string and solves the problem.
-            #Eval usually stores input as a number
-            #Eval can run malicious code however, so I may change this later.
-            solution = str(eval(self.solution.text))
-            self.solution.text = solution
+            #Checks to see if there is a leading zero, and if there is, remove it
+            while i < len(text):
+                if text[i] == '0':
+                    self.solution.text = text.replace("0","")
+                    i+=1
+                else:
+                    break
+                
+            #Checks to see if there is any input after cleaning the zeros!
+            if self.solution.text:
+                #Eval takes the entire string and solves the problem.
+                #Eval usually stores input as a number
+                #Eval can run malicious code however, so I may change this later.
+                try:
+                    solution = str(eval(self.solution.text))
+            
+                    self.solution.text = solution
+            
+                    #Clears the variable after each calculation!
+                    self.last_was_operator = ""
+
+                #You cna't divide by zero! >:(
+                except ZeroDivisionError:
+                    return
+                    
+            else:
+                #Returns nothing if there is no text
+                return
+        #Returns nothing if there is no text
+        else:
+            return
         
 #Runs the app
 if __name__ == "__main__":
