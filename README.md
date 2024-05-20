@@ -31,7 +31,7 @@ Leading zeros are now deleted <br>
 Parentheses and factorial can now be used <br>
 Divizion by zero is no longer possible <br>
 Add in more input validation functionalilty <br>
-Uploaded V-1.10 APK File <br>
+Uploaded V-1.10 APK File (In Progress) <br>
 
 
 # Current Features as of V-1.10:
